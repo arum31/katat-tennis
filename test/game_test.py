@@ -1,38 +1,43 @@
-from game import init_game, player_scored, Score
+import pytest
+
+from game import player_scored, Score
+from pytest import *
 
 
-def test_should_return_15_when_player1_scores_one_time():
-    init_game()
-    current_score = Score()
+@pytest.mark.parametrize(
+    "expected_score_p1, expected_score_p2, expected_results",
+    [
+        [1, 0, Score(1, 0)],
+        [2, 0, Score(2, 0)],
+        [3, 0, Score(3, 0)],
+        [4, 0, Score(4, 0)],
+        [0, 1, Score(0, 1)],
+        [0, 2, Score(0, 2)],
+        [0, 3, Score(0, 3)],
+        [0, 4, Score(0, 4)],
+        [1, 1, Score(1, 1)],
+        [1, 2, Score(1, 2)],
+        [1, 3, Score(1, 3)],
+        [1, 4, Score(1, 4)],
+        [2, 1, Score(2, 1)],
+        [2, 2, Score(2, 2)],
+        [2, 3, Score(2, 3)],
+        [2, 4, Score(2, 4)],
+        [3, 1, Score(3, 1)],
+        [3, 2, Score(3, 2)],
+        [3, 3, Score(3, 3)],
+        [3, 4, Score(3, 4)],
+        [4, 1, Score(4, 1)],
+        [4, 2, Score(4, 2)],
+        [4, 3, Score(4, 3)],
+        [4, 4, Score(4, 4)],
+    ]
+)
+def test_all_basic_scores(expected_score_p1, expected_score_p2, expected_results):
+    score = Score()
+    for i in range(expected_score_p1):
+        score = player_scored(score, "player1")
+    for i in range(expected_score_p2):
+        score = player_scored(score, "player2")
 
-    score = player_scored(current_score, "player1")
-
-    assert score == Score(1, 0)
-
-
-def test_should_return_30_0_when_player1_scores_two_times():
-    current_score = Score()
-
-    score = player_scored(current_score, "player1")
-    score = player_scored(score, "player1")
-
-    assert score == Score(2, 0)
-
-
-def test_should_return_40_0_when_player1_scores_three_times():
-    init_game()
-    current_score = Score()
-
-    player_scored("player1")
-    player_scored("player1")
-    score = player_scored("player1")
-
-    assert score == Score(3, 0)
-
-
-def test_should_return_0_15_when_player2_scores_one_time():
-    init_game()
-
-    score = player_scored("player2")
-
-    assert score == Score(0, 1)
+    assert score == expected_results

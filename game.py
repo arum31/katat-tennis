@@ -8,14 +8,6 @@ class Score:
     player2: int = 0
 
 
-current_score = Score()
-
-
-def init_game():
-    global current_score
-    current_score = Score()
-
-
 def display_score(score: Score):
     return ""
 
