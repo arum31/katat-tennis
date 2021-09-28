@@ -1,10 +1,11 @@
-class Score:
-    def __init__(self):
-        self.player1 = 0
-        self.player2 = 0
+from dataclasses import dataclass
 
-    def __eq__(self, o: object) -> bool:
-        return super().__eq__(o)
+
+@dataclass
+class Score:
+    """  """
+    player1: int = 0
+    player2: int = 0
 
 
 current_score = Score()
@@ -19,14 +20,13 @@ def display_score(score: Score):
     return ""
 
 
-def player_scored(player_name):
-    global current_score
+def player_scored(current_score, player_name):
     if player_name == "player1":
-        current_score.player1 += 1
+        new_score = Score(current_score.player1 + 1, current_score.player2)
     else:
-        current_score.player2 += 1
+        new_score = Score(current_score.player1, current_score.player2 + 1)
 
-    return format_score(current_score.player1, current_score.player2)
+    return new_score
 
 
 def format_score(player1_score, player2_score):
