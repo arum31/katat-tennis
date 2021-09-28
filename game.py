@@ -3,10 +3,11 @@ class Score:
         self.player1 = 0
         self.player2 = 0
 
+    def __eq__(self, o: object) -> bool:
+        return super().__eq__(o)
+
 
 current_score = Score()
-current_score_player1 = 0
-current_score_player2 = 0
 
 
 def init_game():
@@ -14,15 +15,18 @@ def init_game():
     current_score = Score()
 
 
-def player_scored(player_name):
-    global current_score_player1
-    global current_score_player2
-    if player_name == "player1":
-        current_score_player1 += 1
-    else:
-        current_score_player2 += 1
+def display_score(score: Score):
+    return ""
 
-    return format_score(current_score_player1, current_score_player2)
+
+def player_scored(player_name):
+    global current_score
+    if player_name == "player1":
+        current_score.player1 += 1
+    else:
+        current_score.player2 += 1
+
+    return format_score(current_score.player1, current_score.player2)
 
 
 def format_score(player1_score, player2_score):
