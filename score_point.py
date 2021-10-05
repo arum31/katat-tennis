@@ -1,7 +1,7 @@
-from enum import Enum;
+from enum import IntEnum
 
 
-class ScorePoint(Enum):
+class ScorePoint(IntEnum):
     Love = 0
     Fifteen = 1
     Thirteen = 2
