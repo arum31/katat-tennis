@@ -1,6 +1,6 @@
 import pytest
 
-from game import player_scored, Score
+from game import player_scored, Score, player_scored2
 from score import Score2
 from pytest import *
 
@@ -66,10 +66,10 @@ def test_all_basic_scores(expected_score_p1, expected_score_p2, expected_results
     ]
 )
 def test_all_basic_scores_2(expected_score_p1, expected_score_p2, expected_results):
-    score = Score()
+    score = Score2()
     for i in range(expected_score_p1):
-        score = player_scored(score, "player1")
+        score = player_scored2(score, "player1")
     for i in range(expected_score_p2):
-        score = player_scored(score, "player2")
+        score = player_scored2(score, "player2")
 
     assert score == expected_results

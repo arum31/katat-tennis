@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+from score import Score2
+
 
 @dataclass
 class Score:
@@ -16,6 +18,15 @@ def player_scored(current_score, player_name):
         new_score = Score(current_score.player1 + 1, current_score.player2)
     else:
         new_score = Score(current_score.player1, current_score.player2 + 1)
+
+    return new_score
+
+
+def player_scored2(current_score, player_name):
+    if player_name == "player1":
+        new_score = Score2(current_score.player1 + 1, current_score.player2)
+    else:
+        new_score = Score2(current_score.player1, current_score.player2 + 1)
 
     return new_score
 
